@@ -1,7 +1,14 @@
 # timeslot
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+PUBLIC URL: https://clinquant-cactus-d2962e.netlify.app/
+
+Please see the Peek CRUD assignment completed through Level 2.
+
+There were a few changes I would have liked to make but I was not able to get to including:
+1. After saving, the slot-form should close.
+2. Ember-flatpickr changes the format of the dates between creating and updating, so this should be standardized to one (more readable) format.
+3. Ember-flatpickr also has some weirdness around setting default dates, which is why the dates needed a value to be pre-flled with. This should be improved to at least make it more clear to the user that these were default options (or the default should be something like "Pick a Date" which invites the user to click on the input box). 
+4. Error handling, specifically for validating that all attributes for the model are inputted by the user and they have the correct type.
 
 ## Prerequisites
 
