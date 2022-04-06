@@ -1,5 +1,5 @@
 <div class='text-center'>
-  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' this.showInputs}} data-test='create'>Book Activity</button>
+  <button class='text-center border rounded p-2 m-4' type="button" {{ on 'click' this.showInputs}} data-test='create'>Book Activity</button>
 </div>
 {{#if this.showForm}}
   <SlotForm @newSlot={{true}} @activityName={{this.activityName}} @date={{this.date}}
@@ -22,19 +22,24 @@
   {{#unless slot.deleted}}
     {{#if (eq this.editingSlot slot)}}
       <SlotForm @slot={{slot}} @newSlot={{false}}/>
-      <button type="button" class='border m-4' {{on 'click' this.stopEditing}}>Cancel</button>
+      <button type="button" class='border m-4' {{on 'click' this.stopEditing}}>Done Editing</button>
     {{else}}
-    <div class='border p-4 flex flex-row' data-test='slot'>
-        <div class='p-2'>{{slot.activityName}}</div>
-        <div class='p-2'>{{slot.date}}</div>
-        <div class='p-2'>{{slot.startTime}}</div>
-        <div class='p-2'>{{slot.endTime}}</div>
-        <div class='p-2'>{{slot.numMaxGuests}}</div>
+    <div class='border p-4 flex flex-row justify-center' data-test='slot'>
+          <div class='p-2 m-2 font-medium'>{{slot.activityName}}</div>
+          <div class='p-2 m-2' > On </div>
+          <div class='p-2 m-2 font-medium'>{{slot.date}}</div>
+          <div class='p-2 m-2'> From </div>
+          <div class='p-2 m-2 font-medium'>{{slot.startTime}}</div>
+          <div class='p-2 m-2'>  To </div>
+          <div class='p-2 m-2 font-medium'>{{slot.endTime}}</div>
+          <div class='p-2 m-2'> With </div>
+          <div class='p-2 m-2 font-medium'>{{slot.numMaxGuests}}</div>
+          <div class='p-2 m-2'> Guests </div>
         {{#if slot.isDeleted}}
-          <div>Cancelled</div>
+          <div class='font-bold text-center p-2 m-2'>Cancelled</div>
         {{else}}
-          <button class='p-2' type="button" {{on 'click' (fn this.editSlot slot)}} data-test='edit'>Edit</button>
-          <button class='p-2' type="button"{{on 'click' (fn this.deleteSlot slot)}} data-test='delete'>Delete</button>
+          <button class='p-2 border rounded m-2' type="button" {{on 'click' (fn this.editSlot slot)}} data-test='edit'>Edit</button>
+          <button class='p-2 border rounded m-2' type="button"{{on 'click' (fn this.deleteSlot slot)}} data-test='delete'>Delete</button>
         {{/if}}
     </div>
     {{/if}}

@@ -12,6 +12,7 @@ export default class SlotFormComponent extends Component {
   @tracked endTime = this.getMethods().endTime;
   @tracked activityName = this.getMethods().activityName;
   @tracked numMaxGuests = this.getMethods().numMaxGuests;
+  @tracked direction = 'Save';
 
   getMethods() {
     if (this.args.newSlot) {
@@ -80,5 +81,6 @@ export default class SlotFormComponent extends Component {
       slot.set('endTime', this.endTime);
       slot.set('numMaxGuests', this.numMaxGuests);
     }
+    this.direction = 'Saved!';
   }
 }

@@ -1,11 +1,12 @@
-<div class='m-4'>
+<div class='m-4 flex flex-col lg:flex-row place-items-center border'>
   <div class='text-center p-2 m-2'>
     Activity:
-    <Input @type='text' @value={{this.activityName}} data-test='activity'/>
+    <Input @type='text' class='border' @value={{this.activityName}} data-test='activity'/>
   </div>
   <div class='text-center p-2 m-2'>
     Date:
   <EmberFlatpickr
+    class="border"
     data-test='date'
     placeholder="Choose a Date"
     @date={{this.date}}
@@ -17,6 +18,7 @@
     <div class='text-center p-2 m-2'>
       Start Time:
       <EmberFlatpickr
+      class="border"
       data-test='startTime'
       placeholder="Pick time"
       @date={{this.startTime}}
@@ -30,6 +32,7 @@
     <div class='text-center p-2 m-2'>
       End Time:
       <EmberFlatpickr
+      class="border"
       data-test='endTime'
       @date={{this.endTime}}
       @onChange={{this.onEndTimeChange}}
@@ -42,10 +45,10 @@
 
   <div class='text-center p-2 m-2'>
     Number of Guests:
-    <Input @type='text' @value={{this.numMaxGuests}} data-test='guests'/>
+    <Input @type='text' class="border" @value={{this.numMaxGuests}} data-test='guests'/>
   </div>
 
-  <div class='text-center border-red'>
-    <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.save true)}} data-test='save'>Save</button>
+  <div class='text-center m-2'>
+    <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.save true)}} data-test='save'>{{this.direction}}</button>
   </div>
 </div>
