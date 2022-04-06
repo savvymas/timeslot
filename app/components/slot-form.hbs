@@ -1,0 +1,48 @@
+<div class='text-center p-2 m-2'>
+  Activity:
+  <Input @type='text' @value={{this.activityName}} />
+</div>
+<div class='text-center p-2 m-2'>
+  Date:
+<EmberFlatpickr
+  placeholder="Choose a Date"
+  @date={{this.date}} {{!-- Required Option --}}
+  @enableTime={{false}}
+  {{!-- @maxDate={{this.maxDate}}
+  @minDate={{this.minDate}} --}}
+  @noCalendar={{false}}
+  @onChange={{this.onChange}} {{!-- Required Option --}}
+/>
+</div>
+  <div class='text-center p-2 m-2'>
+    Start Time:
+    <EmberFlatpickr
+    placeholder="Pick time"
+    @date={{this.startTime}}
+    @onChange={{this.onStartTimeChange}}
+    @enableTime={{true}}
+    @noCalendar={{true}}
+    @dateFormat="H:i"
+  />
+  </div>
+
+  <div class='text-center p-2 m-2'>
+    End Time:
+    <EmberFlatpickr
+    @date={{this.endTime}}
+    @onChange={{this.onEndTimeChange}}
+    placeholder="Pick time"
+    @enableTime={{true}}
+    @noCalendar={{true}}
+    @dateFormat="H:i"
+  />
+  </div>
+
+<div class='text-center p-2 m-2'>
+  Number of Guests:
+  <Input @type='text' @value={{this.numMaxGuests}} />
+</div>
+
+<div class='text-center border-red'>
+  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.save true)}}>Save</button>
+</div>

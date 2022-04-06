@@ -2,79 +2,12 @@
   <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.showInputs true)}}>Schedule A Time:</button>
 </div>
 {{#if this.showForm}}
-<div class='text-center p-2 m-2'>
-  Activity:
-  <Input @type='text' @value={{this.activityName}} />
-</div>
-<div class='text-center p-2 m-2'>
-  Date:
-<EmberFlatpickr
-  placeholder="Choose a Date"
-  {{!-- @allowInput={{false}} --}}
-  @altFormat="m-d-y"
-  @altInput={{true}}
-  @altInputClass="my-alt-input"
-  @clickOpens={{true}}
-  @date={{this.onChange}} {{!-- Required Option --}}
-  @dateFormat="M/D/Y"
-  @enableTime={{false}}
-  @locale="en"
-  @maxDate={{this.maxDate}}
-  @minDate={{this.minDate}}
-  @minuteIncrement={{5}}
-  @mode="single"
-  @nextArrow=">"
-  @noCalendar={{false}}
-  @onChange={{this.onChange}} {{!-- Required Option --}}
-  @onClose={{this.onClose}}
-  {{!-- @onOpen={{this.onOpen}} --}}
-  @onReady={{this.onReady}} {{!-- Can be used to easily store a reference to the flatpickr input. --}}
-  @parseDate={{false}}
-  @prevArrow="<"
-  @shorthandCurrentMonth={{false}}
-  @static={{false}}
-  @time_24hr={{false}}
-  @weekNumbers={{false}}
-/>
-</div>
-<div class='text-center p-2 m-2'>
-  Start Time:
-  <EmberFlatpickr
-  placeholder="Pick time"
-  @date={{this.onStartTimeChange}}
-  @enableTime={{true}}
-  @locale="en"
-  @minDate={{this.minDate}}
-  @noCalendar={{true}}
-  @onClose={{this.onCloseTime}}
-  @onChange={{this.onStartTimeChange}}
-  @onReady={{this.onReadyTime}}
-/>
-</div>
-
-<div class='text-center p-2 m-2'>
-  End Time:
-  <EmberFlatpickr
-  placeholder="Pick time"
-  @date={{this.onEndTimeChange}}
-  @enableTime={{true}}
-  @locale="en"
-  @minDate={{this.minDate}}
-  @noCalendar={{true}}
-  @onClose={{this.onCloseTime}}
-  @onChange={{this.onEndTimeChange}}
-  @onReady={{this.onReadyTime}}
-/>
-</div>
-
-<div class='text-center p-2 m-2'>
-  Number of Guests:
-  <Input @type='text' @value={{this.numMaxGuests}} />
-</div>
-
-<div class='text-center'>
-  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.save true)}}>Save</button>
-</div>
+  <SlotForm @newSlot={{true}} @activityName={{this.activityName}} @date={{this.date}}
+  @startTime={{this.startTime}} @endTime={{this.endTime}} @numMaxGuests={{this.numMaxGuests}} />
+  <div class='text-center'>
+    <button class='text-center border rounded p-2 m-2' type="button"
+    {{ on 'click' (fn this.showInputs false)}}>Cancel</button>
+  </div>
 
 {{/if}}
 
@@ -89,15 +22,26 @@
   {{/unless}}
   <div class='flex flex-col'>
   {{#each this.records as |slot|}}
+  {{#unless slot.deleted}}
+    {{#if (eq this.editingSlot slot)}}
+      <SlotForm @slot={{slot}} @newSlot={{false}}/>
+      <button type="button" {{on 'click' this.stopEditing}}>Clear</button>
+    {{else}}
     <div class='border p-4 flex flex-row'>
         <div class='p-2'>{{slot.activityName}}</div>
         <div class='p-2'>{{slot.date}}</div>
         <div class='p-2'>{{slot.startTime}}</div>
         <div class='p-2'>{{slot.endTime}}</div>
         <div class='p-2'>{{slot.numMaxGuests}}</div>
-        <button class='p-2'>Edit</button>
-        <button class='p-2'>Delete</button>
+        {{#if slot.isDeleted}}
+          <div>Cancelled</div>
+        {{else}}
+          <button class='p-2' type="button" {{on 'click' (fn this.editSlot slot)}}>Edit</button>
+          <button class='p-2' type="button"{{on 'click' (fn this.deleteSlot slot)}}>Delete</button>
+        {{/if}}
     </div>
+    {{/if}}
+    {{/unless}}
   {{/each}}
   </div>
 {{/if}}

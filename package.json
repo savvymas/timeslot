@@ -71,5 +71,10 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "ember-concurrency": "^2.2.1",
+    "ember-truth-helpers": "^3.0.0",
+    "uuid": "^8.3.2"
   }
 }
