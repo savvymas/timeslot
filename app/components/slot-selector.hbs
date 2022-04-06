@@ -1,5 +1,5 @@
 <div class='text-center'>
-  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.showInputs true)}}>Schedule A Time:</button>
+  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' this.showInputs}}>Book Activity</button>
 </div>
 {{#if this.showForm}}
   <SlotForm @newSlot={{true}} @activityName={{this.activityName}} @date={{this.date}}
@@ -8,24 +8,21 @@
     <button class='text-center border rounded p-2 m-2' type="button"
     {{ on 'click' (fn this.showInputs false)}}>Cancel</button>
   </div>
-
 {{/if}}
 
-
-<div class='text-center'>
-  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.showCal true)}}>My Calendar</button>
+<div class='p-2 m-4'>
+  <div class='text-center font-bold text-3xl'>My Bookings</div>
 </div>
 
-{{#if this.showSchedule}}
-  {{#unless this.records}}
-  <div class='text-center'>You don't have any bookings yet</div>
-  {{/unless}}
-  <div class='flex flex-col'>
-  {{#each this.records as |slot|}}
+{{#unless this.records}}
+<div class='text-center'>You don't have any bookings yet</div>
+{{/unless}}
+<div class='flex flex-col'>
+{{#each this.records as |slot|}}
   {{#unless slot.deleted}}
     {{#if (eq this.editingSlot slot)}}
       <SlotForm @slot={{slot}} @newSlot={{false}}/>
-      <button type="button" {{on 'click' this.stopEditing}}>Clear</button>
+      <button type="button" class='border m-4' {{on 'click' this.stopEditing}}>Cancel</button>
     {{else}}
     <div class='border p-4 flex flex-row'>
         <div class='p-2'>{{slot.activityName}}</div>
@@ -41,7 +38,6 @@
         {{/if}}
     </div>
     {{/if}}
-    {{/unless}}
-  {{/each}}
-  </div>
-{{/if}}
+  {{/unless}}
+{{/each}}
+</div>

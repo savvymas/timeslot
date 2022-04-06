@@ -72,27 +72,13 @@ export default class SlotFormComponent extends Component {
           },
         },
       });
-      this.showForm = false;
     } else {
-      console.log('slot', this.args.slot.id);
-      console.log(this.store.hasRecordForId('slot', this.args.slot.id));
-
       let slot = this.store.peekRecord('slot', this.args.slot.id);
       slot.set('activityName', this.activityName);
       slot.set('date', this.date);
       slot.set('startTime', this.startTime);
       slot.set('endTime', this.endTime);
       slot.set('numMaxGuests', this.numMaxGuests);
-      this.showForm = false;
     }
-    //this.clear();
-  }
-
-  clear() {
-    this.args.slot.activityName = undefined;
-    this.args.slot.date = undefined;
-    this.this.args.slot.startTime = undefined;
-    this.this.args.slot.endTime = undefined;
-    this.this.args.slot.numMaxGuests = undefined;
   }
 }
