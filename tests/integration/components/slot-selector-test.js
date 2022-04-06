@@ -7,20 +7,7 @@ module('Integration | Component | slot-selector', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
     await render(hbs`<SlotSelector />`);
-
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <SlotSelector>
-        template block text
-      </SlotSelector>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).hasText("Book Activity My Bookings You don't have any bookings yet");
   });
 });

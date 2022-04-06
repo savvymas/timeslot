@@ -1,23 +1,23 @@
 <div class='m-4'>
   <div class='text-center p-2 m-2'>
     Activity:
-    <Input @type='text' @value={{this.activityName}} />
+    <Input @type='text' @value={{this.activityName}} data-test='activity'/>
   </div>
   <div class='text-center p-2 m-2'>
     Date:
   <EmberFlatpickr
+    data-test='date'
     placeholder="Choose a Date"
-    @date={{this.date}} {{!-- Required Option --}}
+    @date={{this.date}}
     @enableTime={{false}}
-    {{!-- @maxDate={{this.maxDate}}
-    @minDate={{this.minDate}} --}}
     @noCalendar={{false}}
-    @onChange={{this.onChange}} {{!-- Required Option --}}
+    @onChange={{this.onChange}}
   />
   </div>
     <div class='text-center p-2 m-2'>
       Start Time:
       <EmberFlatpickr
+      data-test='startTime'
       placeholder="Pick time"
       @date={{this.startTime}}
       @onChange={{this.onStartTimeChange}}
@@ -30,6 +30,7 @@
     <div class='text-center p-2 m-2'>
       End Time:
       <EmberFlatpickr
+      data-test='endTime'
       @date={{this.endTime}}
       @onChange={{this.onEndTimeChange}}
       placeholder="Pick time"
@@ -41,10 +42,10 @@
 
   <div class='text-center p-2 m-2'>
     Number of Guests:
-    <Input @type='text' @value={{this.numMaxGuests}} />
+    <Input @type='text' @value={{this.numMaxGuests}} data-test='guests'/>
   </div>
 
   <div class='text-center border-red'>
-    <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.save true)}}>Save</button>
+    <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' (fn this.save true)}} data-test='save'>Save</button>
   </div>
 </div>

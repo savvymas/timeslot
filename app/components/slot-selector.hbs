@@ -1,5 +1,5 @@
 <div class='text-center'>
-  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' this.showInputs}}>Book Activity</button>
+  <button class='text-center border rounded p-2 m-2' type="button" {{ on 'click' this.showInputs}} data-test='create'>Book Activity</button>
 </div>
 {{#if this.showForm}}
   <SlotForm @newSlot={{true}} @activityName={{this.activityName}} @date={{this.date}}
@@ -24,7 +24,7 @@
       <SlotForm @slot={{slot}} @newSlot={{false}}/>
       <button type="button" class='border m-4' {{on 'click' this.stopEditing}}>Cancel</button>
     {{else}}
-    <div class='border p-4 flex flex-row'>
+    <div class='border p-4 flex flex-row' data-test='slot'>
         <div class='p-2'>{{slot.activityName}}</div>
         <div class='p-2'>{{slot.date}}</div>
         <div class='p-2'>{{slot.startTime}}</div>
@@ -33,8 +33,8 @@
         {{#if slot.isDeleted}}
           <div>Cancelled</div>
         {{else}}
-          <button class='p-2' type="button" {{on 'click' (fn this.editSlot slot)}}>Edit</button>
-          <button class='p-2' type="button"{{on 'click' (fn this.deleteSlot slot)}}>Delete</button>
+          <button class='p-2' type="button" {{on 'click' (fn this.editSlot slot)}} data-test='edit'>Edit</button>
+          <button class='p-2' type="button"{{on 'click' (fn this.deleteSlot slot)}} data-test='delete'>Delete</button>
         {{/if}}
     </div>
     {{/if}}
